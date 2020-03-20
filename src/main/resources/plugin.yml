@@ -1,0 +1,5 @@
+name: ImanityKBPlus
+version: ${project.version}
+main: org.imanity.knockback.ImanityKBPlus
+authors: [LeeGod]
+description: The plugin contains kb modules for iSpigot that is still under developing
