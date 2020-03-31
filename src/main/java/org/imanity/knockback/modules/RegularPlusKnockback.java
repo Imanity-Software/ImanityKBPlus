@@ -30,9 +30,11 @@ public class RegularPlusKnockback extends AbstractKnockback {
     @ValueOrder(10)
     public boolean KB_REDUCTION = true;
     @ValueOrder(11)
-    public float HORIZONTAL_REDUCTION = 0.3f;
+    public float POT_FALL_SPEED = 0.05f;
     @ValueOrder(12)
-    public float VERTICAL_REDUCTION = 0.4f;
+    public float POT_THROW_MULTIPLIER = 0.5f;
+    @ValueOrder(13)
+    public float POT_OFFSET = -20.0f;
 
     @Override
     public String moduleName() {
@@ -46,13 +48,6 @@ public class RegularPlusKnockback extends AbstractKnockback {
                     (-MathHelper.sin(attacker.yaw * 3.1415927F / 180.0F) * (float) i * SPRINT_HORIZONTAL), SPRINT_VERTICAL,
                     (MathHelper.cos(attacker.yaw * 3.1415927F / 180.0F) * (float) i * SPRINT_HORIZONTAL)
             );
-
-            if (KB_REDUCTION
-                    && ImanityKBPlus.getInstance().getPlayerManager().isKnockbackReduction(victim)) {
-                victim.motX *= HORIZONTAL_REDUCTION;
-                victim.motY *= VERTICAL_REDUCTION;
-                victim.motZ = HORIZONTAL_REDUCTION;
-            }
 
             attacker.motX *= SLOWDOWN;
             attacker.motZ *= SLOWDOWN;
@@ -129,21 +124,16 @@ public class RegularPlusKnockback extends AbstractKnockback {
 
     @Override
     public float potFallSpeed() {
-        return 0.05f;
+        return POT_FALL_SPEED;
     }
 
     @Override
     public float potThrowMultiplier() {
-        return 0.5f;
+        return POT_THROW_MULTIPLIER;
     }
 
     @Override
     public float potOffSet() {
-        return -20f;
-    }
-
-    @Override
-    public float potSwiftness() {
-        return 0.0415F;
+        return POT_OFFSET;
     }
 }
